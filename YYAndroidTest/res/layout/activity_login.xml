@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/fl_title_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/yy_bear_logo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/fl_title_login"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/str_dummy_test"
+        android:src="@drawable/yy_bear_logo" />
+
+    <RelativeLayout
+        android:id="@+id/edit_account_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/yy_bear_logo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_input" >
+
+        <EditText
+            android:id="@+id/EdtAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_toLeftOf="@+id/show_list"
+            android:background="@null"
+            android:hint="@string/str_pls_input_id"
+            android:inputType="text|textNoSuggestions|textEmailAddress"
+            android:maxLength="256"
+            android:singleLine="true"
+            android:textColorHint="#b3b3b3"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/show_list"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@drawable/btn_show_account_list" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/password_container"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignLeft="@+id/edit_account_parent"
+        android:layout_alignRight="@+id/edit_account_parent"
+        android:layout_below="@id/edit_account_parent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_input" >
+
+        <EditText
+            android:id="@+id/EdtPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@null"
+            android:hint="@string/str_input_password"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textColorHint="#b3b3b3"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tip_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/password_container"
+        android:layout_alignRight="@+id/password_container"
+        android:layout_below="@id/password_container"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tip_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:maxLines="3"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:textColor="#bc4b14"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tip_pass"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dip"
+            android:paddingTop="10dp"
+            android:textColor="#bc4b14"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <WebView
+            android:id="@+id/tip_webview_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="#bc4b14"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/normal_btn_height"
+        android:layout_alignLeft="@+id/tip_group"
+        android:layout_alignRight="@+id/tip_group"
+        android:layout_below="@+id/tip_group"
+        android:background="@drawable/btn_blue"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="#fff"
+        android:textSize="18dp" />
+
+
+    <TextView
+        android:id="@+id/tv_findpwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_ok"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_textfindpwd"
+        android:text="@string/find_pwd"
+        android:textColor="@color/color_light_gray"
+        android:textSize="@dimen/small_fnt" />
+    <!-- 
+        <CheckBox
+                android:id="@+id/cbx_guest_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_guest_login" 
+                android:layout_alignParentRight="true"
+                android:paddingRight="10dp"
+                android:layout_below="@+id/tip_group"/>
+     -->
+
+</RelativeLayout>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.talk51.dasheng.widget.SlidingPaneLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/channel_sliding_pane_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <FrameLayout
+            android:id="@+id/sliding_pane_frame"
+            android:layout_width="@dimen/sliding_pane_width"
+            android:layout_height="wrap_content"
+            />
+
+    <LinearLayout
+            android:id="@+id/channel_layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#70000000"
+                android:orientation="horizontal">
+
+               <TextView
+                    android:id="@+id/channelname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_category_normal"
+            android:orientation="vertical">
+
+           <Button
+            android:id="@+id/btn_leave"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/normal_btn_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="@string/str_leave_channel"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+            
+             <RelativeLayout
+                  android:id="@+id/btn_queue_info"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@drawable/bg_category_normal"
+                  android:layout_below = "@+id/btn_leave"
+                  android:orientation="horizontal">
+               
+                   <Button
+                     android:id="@+id/btn_joinQueue"
+                     android:layout_width="wrap_content"
+                     android:layout_height="@dimen/normal_btn_height"
+                     android:background="@drawable/btn_blue"
+                     android:gravity="center"
+                     android:text="@string/str_join_queue"
+                     android:textColor="#fff"
+                     android:textSize="18sp" />
+
+                   <Button
+                    android:id="@+id/btn_leaveQueue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_toRightOf = "@+id/btn_joinQueue"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_leave_queue"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+                    <Button
+                    android:id="@+id/btn_queryQueue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_toRightOf = "@+id/btn_leaveQueue"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_query_queue"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+                    
+                    <Button
+                    android:id="@+id/btn_sendTextChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_below = "@+id/btn_joinQueue"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_send_TextChat"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+                    
+                     <Button
+                    android:id="@+id/btn_queryUserInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_below = "@+id/btn_sendTextChat"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_query_User_Info"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+                     <Button
+                    android:id="@+id/btn_pullUserList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_below = "@id/btn_queryUserInfo"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_pull_User_List"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+                      <Button
+                    android:id="@+id/btn_updateUserInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_below = "@id/btn_pullUserList"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_update_User_Info"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+                      <Button
+                    android:id="@+id/btn_fetchChInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_below = "@id/btn_updateUserInfo"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_fetch_Ch_Info"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+                      <Button
+                    android:id="@+id/btn_updateChInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/normal_btn_height"
+                    android:layout_below = "@id/btn_fetchChInfo"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center"
+                    android:text="@string/str_update_Ch_Info"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+             </RelativeLayout>
+         </RelativeLayout>
+
+
+
+
+
+<!-- 
+        <RelativeLayout
+                android:id="@+id/channel_layout_video"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+
+            <com.duowan.mobile.mediaproxy.YVideoViewLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false"
+                    android:background="#ff000000" android:id="@+id/yvLayout">
+
+                <com.duowan.mobile.mediaproxy.YVideoView
+                        android:id="@+id/surface_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_centerHorizontal="true"/>
+
+                <com.duowan.mobile.mediaproxy.YVideoView
+                        android:id="@+id/video_view_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_alignParentRight="true"/>
+            </com.duowan.mobile.mediaproxy.YVideoViewLayout>
+
+            <Button
+                    android:id="@+id/channel_button_full_screen"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/full_screen_button_selector"
+                    />
+        </RelativeLayout>
+--> 
+        
+<!--
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="#70000000"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:orientation="horizontal">
+
+            <ImageButton
+                    android:id="@+id/btn_mic_mute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:src="@drawable/btn_mic_mute"/>
+
+            <ImageButton
+                    android:id="@+id/btn_switch_video"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:src="@drawable/btn_video_switch"/>
+
+            <ImageButton
+                    android:id="@+id/btn_audio_mute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:src="@drawable/btn_audio_mute"/>
+
+            <ImageButton
+                    android:id="@+id/btn_pause"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:src="@drawable/btn_pause"/>
+
+            <ImageButton
+                    android:id="@+id/btn_video_pause"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:src="@drawable/btn_play"/>
+
+            <Button
+                    android:id="@+id/btn_change_video_code_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:padding="5dp"
+                    android:text="原画"
+                    android:src="@drawable/bg_message_top"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <com.talk51.dasheng.widget.MultiTabView
+                    android:id="@+id/ch_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <com.talk51.dasheng.widget.ViewPageSet
+                    android:id="@+id/view_channel_set"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipChildren="true"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/textcontent"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10">
+            </EditText>
+
+            <Button
+                    android:id="@+id/sendtext"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/send"/>
+        </LinearLayout>
+-->
+
+
+
+    </LinearLayout>
+</com.talk51.dasheng.widget.SlidingPaneLayout>

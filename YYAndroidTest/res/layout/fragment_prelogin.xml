@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+    <FrameLayout
+            android:id="@+id/fl_title_prelogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+           />
+
+    <View
+            android:id="@+id/spliter"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/fl_title_prelogin"
+            android:background="@drawable/live_main_title_spliter" />
+
+    <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_below="@+id/spliter"
+            android:src="@drawable/bg_guest_login"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/str_dummy_test"
+            android:adjustViewBounds="true"
+            />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/img"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <TextView
+                android:clickable="true"
+                android:id="@+id/tv_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_btn_height"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="@dimen/med_fnt"
+                android:textColor="#fff"
+                android:text="@string/login"
+                android:gravity="center"
+                android:background="@drawable/btn_blue"/>
+
+        <TextView
+                android:clickable="true"
+                android:id="@+id/tv_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_btn_height"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textSize="@dimen/med_fnt"
+                android:textColor="#fff"
+                android:text="@string/str_auto_register"
+                android:gravity="center"
+                android:background="@drawable/btn_blue"
+                />
+    </LinearLayout>
+
+</RelativeLayout>

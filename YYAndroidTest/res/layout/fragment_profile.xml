@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_category_normal"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/fl_title_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <com.talk51.dasheng.widget.CustomListView
+        android:id="@+id/lv_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_logout"
+        android:layout_gravity="left|center_vertical"
+        android:divider="@null" />
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="@dimen/normal_btn_height"
+        android:layout_below="@+id/fl_title_profile"
+        android:background="@drawable/btn_blue"
+        android:gravity="center"
+        android:text="@string/str_logout"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_livecast"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/normal_btn_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/btn_blue"
+        android:gravity="center"
+        android:text="@string/str_livecast"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

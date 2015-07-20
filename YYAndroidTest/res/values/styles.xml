@@ -1,0 +1,194 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- just defines top layer "Animation" -->
+    <style name="Animation" />
+
+    <!-- the animations must have been defined in your "anim" folder, of course -->
+    <style name="Animation.MyAwesomeAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/push_left_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/push_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
+    </style>
+
+    <style name="AppTheme" parent="android:Theme.Light">
+        <item name="android:windowAnimationStyle">@style/Animation.MyAwesomeAnimation</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="ActivityTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MyAwesomeAnimation</item>
+    </style>
+
+    <style name="TransparentTheme" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@color/clear</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MyAwesomeAnimation</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@color/clear</item>
+    </style>
+
+    <style name="ChannelTempTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MyAwesomeAnimation</item>
+    </style>
+
+    <style name="ChannelMediaListViewSiderStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/channel_media_row_height</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">@dimen/common_padding</item>
+        <item name="android:paddingBottom">@dimen/common_padding</item>
+        <item name="android:textSize">@dimen/small_fnt</item>
+    </style>
+
+    <style name="WrapContentStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- TODO should extends from WrapContentStyle, however I don't know how to write that. -->
+    <style name="MenuTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/record_gray_text</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="voiceVolumeBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/record_voice_volume</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+    <style name="ShadowedTextStyle">
+        <item name="android:shadowColor">@color/text_shadow_gray</item>
+        <item name="android:shadowDx">1.5</item>
+        <item name="android:shadowDy">1.5</item>
+        <item name="android:shadowRadius">0.5</item>
+    </style>
+
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="PopupMenuPane">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_bottom</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+
+    <style name="PopupMenuTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">@dimen/font_size_small_fnt</item>
+    </style>
+
+    <style name="PopupMenuNormalItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/normal_btn_height</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@drawable/btn_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">@dimen/font_size_med_fnt</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="PopupMenuCancelItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/normal_btn_height</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@drawable/btn_null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">@dimen/font_size_med_fnt</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="KNCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/kn_day_checkbox_selector</item>
+    </style>
+
+    <style name="Tab_Item">
+        <item name="android:layout_width">0.0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:background">@drawable/tab_bottom_checked</item>
+    </style>
+
+    <style name="ActivityTransparent" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- 全屏dialog样式 左右插入 -->
+    <style name="myuserguidedialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@color/clear</item>
+    </style>
+
+    <style name="MyTheme" parent="android:Theme">
+        <item name="android:windowAnimationStyle">@style/noAnimationtranslucent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="noAnimationtranslucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent_clear</item>
+        <item name="android:windowIsTranslucent">true</item>
+<!--         <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item> -->
+
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <style name="Theme.Dialog.Custom" parent="android:Theme.Dialog">
+
+        <!-- Window attributes -->
+        <item name="android:windowSoftInputMode">adjustNothing|stateAlwaysHidden</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+
+       <!-- Text styles -->
+        <item name="android:textSize">16sp</item>
+        <!-- <item name="android:textColor">@color/text_black</item> -->
+        
+ 
+    </style>
+</resources>

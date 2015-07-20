@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    
+         <EditText
+            android:id="@+id/EdtTopSid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:background="@null"
+            android:hint="频道号"
+            android:inputType="text|textNoSuggestions"
+            android:maxLength="20"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textColorHint="#b3b3b3"
+            android:textSize="16sp" />   
+    
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/normal_btn_height"
+        android:layout_below="@+id/EdtTopSid"
+        android:background="@drawable/btn_blue"
+        android:gravity="center"
+        android:text="进频道"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+<!-- 
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_header_height"
+		android:background="@drawable/bg_live_main_top"
+		android:layout_alignParentTop="true" 
+		>
+
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:text="@string/my_channel_title"
+			android:textColor="#333333"
+			android:textSize="20sp"
+			android:gravity="center"
+			/>
+
+    </RelativeLayout>
+
+	<View 
+		android:id="@+id/spliter"
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:background="@drawable/live_main_title_spliter"
+        android:layout_below="@+id/top" 
+		/>
+ 
+    <com.talk51.dasheng.widget.MultiTabView
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/spliter"
+		/>
+
+    <com.talk51.dasheng.widget.ViewPageSet
+        android:id="@+id/view_page_set"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab"
+        android:clipChildren="true" />
+-->
+</RelativeLayout>

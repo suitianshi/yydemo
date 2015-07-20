@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.talk51.dasheng.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_pane_layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:id="@+id/container_fragment_list"
+        android:layout_width="@dimen/sliding_pane_width"
+        android:layout_height="wrap_content" >
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@+id/container_fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <RadioGroup
+            android:id="@+id/rg_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ctrl_panel"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_main"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/tab_bottom_checked"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/tab_live"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/live"
+                android:textColor="@drawable/tab_text_selector"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/tab_bottom_checked"
+                android:button="@null"
+                android:checked="false"
+                android:drawableTop="@drawable/tab_message"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/doings"
+                android:textColor="@drawable/tab_text_selector"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/tab_bottom_checked"
+                android:button="@null"
+                android:checked="false"
+                android:drawableTop="@drawable/tab_friend"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/my"
+                android:textColor="@drawable/tab_text_selector"
+                android:textSize="14sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+</com.talk51.dasheng.widget.SlidingPaneLayout>

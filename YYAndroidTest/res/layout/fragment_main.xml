@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/fl_title_prelogin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true" />
+
+    <View
+        android:id="@+id/spliter"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/fl_title_prelogin"
+        android:background="@drawable/live_main_title_spliter" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_below="@+id/spliter"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/str_dummy_test"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_guest_login" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/img"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_joinchannel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normal_btn_height"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_blue"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/ids_str_input_id_enter_channel"
+            android:textColor="#fff"
+            android:textSize="@dimen/med_fnt" />
+    </LinearLayout>
+
+</RelativeLayout>

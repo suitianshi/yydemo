@@ -1,0 +1,147 @@
+<resources>
+
+    <dimen name="about_check_update_top">20dp</dimen>
+    <dimen name="about_logo_margin">140dp</dimen>
+    <dimen name="about_version_bottom">15dp</dimen>
+    <dimen name="about_version_top">10dp</dimen>
+    <dimen name="big_fnt">18sp</dimen>
+    <dimen name="big_padding">20dp</dimen>
+    <dimen name="big_margin">20dp</dimen>
+    <dimen name="very_small_fnt">12sp</dimen>
+    <dimen name="channel_common_blank">8dp</dimen>
+    <dimen name="channel_free_style_item_icon_height">40dp</dimen>
+    <dimen name="channel_free_style_item_icon_highlight_height">41dp</dimen>
+    <dimen name="channel_free_style_item_blank_thickness">1.5dp</dimen>
+    <dimen name="channel_free_style_item_highlight_thickness">2.5dp</dimen>
+    <dimen name="channel_header_height">60dp</dimen>
+    <dimen name="channel_media_free_list_height">192dp</dimen>
+    <dimen name="channel_media_row_height">48dp</dimen>
+    <dimen name="channel_media_total_height">240dp</dimen>
+    <dimen name="channel_picture_height">240dp</dimen>
+    <dimen name="common_margin">10dp</dimen>
+    <dimen name="common_padding">10dp</dimen>
+    <dimen name="content_fnt">20sp</dimen>
+    <dimen name="ctrl_panel_icon_height">65dp</dimen>
+    <dimen name="ctrl_panel_icon_width">70dp</dimen>
+    <dimen name="daren_fnt">25sp</dimen>
+    <dimen name="group_header_height">38dp</dimen>
+    <dimen name="small_btn_height">40dp</dimen>
+    <dimen name="large_fnt">18sp</dimen>
+    <dimen name="main_title_display_height">44dp</dimen>
+    <dimen name="med_fnt">16sp</dimen>
+    <dimen name="media_top_view_title_height">48dp</dimen>
+    <dimen name="menu_bottom_padding">7dp</dimen>
+    <dimen name="menu_height">50dp</dimen>
+    <dimen name="menu_horizontal_padding">5dp</dimen>
+    <dimen name="menu_top_padding">0dp</dimen>
+    <dimen name="normal_btn_height">50dp</dimen>
+    <dimen name="normal_photo_height">65dp</dimen>
+    <dimen name="normal_photo_width">65dp</dimen>
+    <dimen name="setting_dialog_width">240dp</dimen>
+    <dimen name="settings_row_height">50dp</dimen>
+    <dimen name="small_fnt">15sp</dimen>
+    <dimen name="friend_name_fnt">19sp</dimen>
+    <dimen name="small_margin">6dp</dimen>
+    <dimen name="small_padding">6dp</dimen>
+    <dimen name="border">4dp</dimen>
+    <dimen name="small_photo_width">50dp</dimen>
+    <dimen name="tiny_fnt">14sp</dimen>
+    <dimen name="sub_title_fnt">12sp</dimen>
+    <dimen name="trivial_fnt">10sp</dimen>
+    <dimen name="tiny_margin">2dp</dimen>
+    <dimen name="title_fnt">24sp</dimen>
+    <dimen name="title_height">44dp</dimen>
+    <dimen name="top_header_height">55dp</dimen>
+    <dimen name="weibo_icon_size">40dp</dimen>
+    <dimen name="common_icon_size">45dp</dimen>
+    <dimen name="small_icon_size">20dp</dimen>
+    <dimen name="channel_mic_icon_size">48dp</dimen>
+    <dimen name="mic_rank_list_divider_height">2dp</dimen>
+    <dimen name="tab_height">40dp</dimen>
+    <dimen name="gallery_photo_size">100dp</dimen>
+    <dimen name="gallery_item_size">64dip</dimen>
+    <dimen name="tuning_bar_height">60dp</dimen>
+    <dimen name="share_icon_size">100dp</dimen>
+    <!--
+    NOTE this value depends on the common_icon_size and small_icon_size :
+    common_icon_size - small_icon_size)
+    -->
+    <dimen name="personal_gender_left_margin">25dp</dimen>
+    <dimen name="personal_flower_icon_height">20dp</dimen>
+    <dimen name="personal_page_mask_bar_height">60dp</dimen>
+    <dimen name="font_size_small_fnt">15sp</dimen>
+    <dimen name="font_size_med_fnt">16sp</dimen>
+    <dimen name="info_group_height">40dp</dimen>
+    <dimen name="channel_online_item_portrait_diameter">40dp</dimen>
+    <dimen name="portrait_diameter">57dp</dimen>
+    <dimen name="livebroadcast_popup_margin_top">150dp</dimen>
+    <dimen name="thumbnail_width">5dp</dimen>
+    <dimen name="ctrlpanelbutton_padding">5dp</dimen>
+    <dimen name="main_view_icon_width">100dp</dimen>
+    <dimen name="main_view_icon_height">75dp</dimen>
+    <dimen name="lock_screen_bottom_margin">50dp</dimen>
+    <dimen name="userguest_paddingleft">82dp</dimen>
+    <dimen name="userguest_paddingtop">60dp</dimen>
+    <dimen name="livemain_search_marginleft">54dp</dimen>
+
+    <!-- slidemenu add by wanghui -->
+    <dimen name="menu_item_padding">10dp</dimen>
+    <dimen name="menu_header_padding_top">8dp</dimen>
+    <dimen name="menu_header_line">3dp</dimen>
+    <dimen name="menu_icon_side">40dp</dimen>
+    <dimen name="menu_slide_width">220dp</dimen>
+    <dimen name="recent_msg_count_size">26dp</dimen>
+    <dimen name="tab_bottom_line_height">1dp</dimen>
+    <dimen name="tab_bottom_highlight_height">2dp</dimen>
+    <dimen name="tab_icon">35dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="default_channel_logo_size">57dp</dimen>
+    <dimen name="default_live_thumb_width">118dp</dimen>
+    <dimen name="default_live_thumb_height">88dp</dimen>
+    <dimen name="default_notice_thumb_width">320dp</dimen>
+    <dimen name="default_notice_thumb_height">154dp</dimen>
+    <dimen name="head_icon_padding">2dp</dimen>
+
+    <!-- <dimen name="kn_normal_team_info_height">80dp</dimen> -->
+    <!-- <dimen name="kn_group_team_info_height">60dp</dimen> -->
+    <!-- <dimen name="kn_normal_team_info_head_height">60dp</dimen> -->
+    <!-- <dimen name="kn_normal_icon_size">60dp</dimen> -->
+    <!-- <dimen name="kn_small_icon_size">60dp</dimen> -->
+    <!-- <dimen name="kn_normal_icon_bg_height">70dp</dimen> -->
+    <!-- <dimen name="kn_normal_icon_bg_width">60dp</dimen> -->
+
+    <dimen name="kn_team_info_all_height">67dp</dimen>
+    <dimen name="kn_team_info_head_height">44dp</dimen>
+    <dimen name="kn_team_info_tail_height">23dp</dimen>
+    <dimen name="kn_team_info_icon_size">44dp</dimen>
+    <dimen name="kn_team_info_icon_offset_x">7dp</dimen>
+    <dimen name="kn_team_info_icon_botom_bg_height">8dp</dimen>
+    <dimen name="kn_group_pk_number_bg_width">47dp</dimen>
+    <dimen name="kn_group_pk_number_bg_height">47dp</dimen>
+    <dimen name="kn_group_pk_tail_height">15dp</dimen>
+    <dimen name="kn_group_pk_cell_other_height">62dp</dimen>
+    <dimen name="kn_group_pk_number_bottom_bg_width">38dp</dimen>
+    <dimen name="kn_group_pk_number_bottom_bg_height">6dp</dimen>
+    <dimen name="kn_group_pk_icon_offset_x">69dp</dimen>
+    <dimen name="kn_group_pk_icon_offset_y">10dp</dimen>
+    <dimen name="kn_group_pk_icon_size">32dp</dimen>
+    <dimen name="kn_vs_width">33dp</dimen>
+    <dimen name="kn_vs_height">19dp</dimen>
+    <dimen name="kn_gift_dialog_width">280dp</dimen>
+    <dimen name="title_back_width">60dp</dimen>
+    <dimen name="live_bcast_invite_friend_pane_item_width">80dp</dimen>
+    <dimen name="kn_wish_crown_left_x">20dp</dimen>
+    <dimen name="gprs_tip_height">44dp</dimen>
+    <!-- 赠送免费加油卡的对话框 -->
+    <dimen name="dlg_send_sms_height">160dp</dimen>
+    <dimen name="sliding_pane_width">280dp</dimen>
+    <dimen name="userguide_padding">10dp</dimen>
+    <dimen name="dlg_content_width">280dp</dimen>
+    
+    <dimen name="msg_yygame_width">250dp</dimen>
+<dimen name="msg_yygame_height">114dp</dimen>
+</resources>

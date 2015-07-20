@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting_button">setting</string>
+    <string name="buddy_poster_view">buddy poster view</string>
+    <string name="buddy_head_button">buddy head button</string>
+    <string name="flowericon_image_view">flower icon image view</string>
+    <string name="two_dimension_image_button">two_dimension_image_button</string>
+    <string name="icon_image_view">icon_image_view</string>
+    <string name="str_level">user level</string>
+    <string name="dummy_content_desc">dummy_content_descl</string>
+    
+    <string name="weibo_photo">Weibo photo</string>
+    <string name="weibo_sns_type">Weibo SNS type</string>
+    <string name="weibo_share_to_y_friends">weibo_share_to_y_friends</string>
+    
+    <string name="pull_to_refresh_image">pull_to_refresh_image</string>
+</resources>
