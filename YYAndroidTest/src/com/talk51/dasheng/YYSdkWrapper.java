@@ -13,6 +13,7 @@ import com.talk51.dasheng.protocol.ProtoReq.LoginReq;
 import com.talk51.dasheng.protocol.ProtoReq.LogoutReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessJoinReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessionJoinProp;
+import com.talk51.dasheng.protocol.ProtoReq.Str2StrProp;
 import com.talk51.dasheng.protocol.ProtoReq.YCTokenRequest;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.IProtoMgr;
@@ -83,6 +84,7 @@ public class YYSdkWrapper {
         mNetStateCb.context = "";
         mNetStateCb.status = 0;
         mNetStateCb.unmarshal(data);
+        Log.e(tag, "netstate change:" + mNetStateCb.status);
         switch (mNetStateCb.status) {
         case NetStateChangeRes.STATE_UNAVAILABLE:
             setLoggedIn(false);
@@ -134,7 +136,11 @@ public class YYSdkWrapper {
     }
 
     public static void joinSession(int sid, int subSid) {
-        String token = getYCTokenHex();
+        if(!isLoggedIn()) {
+            Log.e(tag, "call joinSession but you're logged off");
+            return;
+        }
+        String token = getYCTokenHex(true);
 
         SessJoinReq req = new SessJoinReq();
         //to kick off the same account
@@ -184,14 +190,14 @@ public class YYSdkWrapper {
         setLoggedIn(false);
     }
 
-    public static String getYCTokenHex() {
+    public static String getYCTokenHex(boolean forJoinSession) {
         int appKey       = APP_KEY;
         int ver          = APP_VERSION_INT;
         int expiretime   = EXPIRE_IN;
         String secretKey = APP_SECRET_STR;
 
         YCTokenRequest tokenReq = new YCTokenRequest(appKey, ver, expiretime, secretKey);
-
+        if(forJoinSession)tokenReq.addStr2StrProp(new Str2StrProp("OPTYPE", "1"));
         String token =  new String(mProtoMgr.getYCTokenHex(tokenReq.getBytes()));
         return token;
     }
@@ -200,7 +206,7 @@ public class YYSdkWrapper {
         if(account == null || account.length() == 0) {
             account = TEST_ACCOUNT;
         }
-        LoginReq req = new LoginReq(account, passwd, getYCTokenHex(), LoginReq.THIRD_LOGIN);
+        LoginReq req = new LoginReq(account, passwd, getYCTokenHex(false), LoginReq.THIRD_LOGIN);
         req.context = "login";
         mAccount = account;
         mProtoMgr.sendRequest(req.getBytes());

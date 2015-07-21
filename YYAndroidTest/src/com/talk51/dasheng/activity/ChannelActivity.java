@@ -76,9 +76,15 @@ public class ChannelActivity extends UIFragmentActivity
         @MessageHandler(message = SDKParam.Message.messageId)
         public void onEvent(byte[] data)
         {
+            Log.e("xuawang", new String(data));
             int eventType = YYSdkWrapper.getEventType(data);
             switch (eventType)
             {
+            case ProtoEvent.EventType.PROTO_EVENT_LOGIN_RES:
+            {
+                YYSdkWrapper.parseLoginResponse(data);
+                break;
+            }
             case ProtoEvent.EventType.PROTO_EVENT_SESS_JOIN_RES:
             {
                 onJoinRes(data);
@@ -112,6 +118,11 @@ public class ChannelActivity extends UIFragmentActivity
             case ProtoEvent.EventType.PROTO_EVENT_SESS_QUERY_USER_INFO_RES:
             {
                 onQueryUserInfoRes(data);
+                break;
+            }
+            case ProtoEvent.EventType.PROTO_EVENT_NET_STATE_CHANGE:
+            {
+                YYSdkWrapper.parseNetStateChange(data);
                 break;
             }
             default:
