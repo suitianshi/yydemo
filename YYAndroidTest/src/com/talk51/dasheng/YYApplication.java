@@ -16,11 +16,11 @@ import java.util.concurrent.atomic.AtomicReference;
 public class YYApplication extends Application
 {
     private boolean mIsOnline     = false;
-    private int     mAppKey       = /*1818061784*/15012;
+    private int     mAppKey       = 1818061784;
     private long    mTerminalType = 0x20001;
     private long    mUid          = 0;
     private byte[]  mAppVer       = "2".getBytes();
-    private byte[]  mSecretKey    = /*"9f93c099_4"*/"84c592b9_18cf_4".getBytes();
+    private byte[]  mSecretKey    = "9f93c099_4".getBytes();
 
     private static AtomicReference<YYApplication> mInstance =
         new AtomicReference<YYApplication>();
