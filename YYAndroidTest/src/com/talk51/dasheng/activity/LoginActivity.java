@@ -1,6 +1,5 @@
 package com.talk51.dasheng.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,12 +8,9 @@ import android.widget.EditText;
 
 import com.talk51.dasheng.R;
 import com.talk51.dasheng.YYApplication;
+import com.talk51.dasheng.YYSdkWrapper;
 import com.talk51.dasheng.protocol.ProtoEvent;
-import com.talk51.dasheng.protocol.ProtoEvent.ProtoEventBase;
-import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtLoginRes;
-import com.talk51.dasheng.protocol.ProtoReq.LoginReq;
 import com.talk51.dasheng.protocol.ProtoReq.LogoutReq;
-import com.talk51.dasheng.protocol.ProtoReq.YCTokenRequest;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.SDKParam;
 
@@ -33,10 +29,8 @@ public class LoginActivity extends UIActivity
         @MessageHandler(message = SDKParam.Message.messageId)
         public void onEvent(byte[] data)
         {
-        	ProtoEventBase base = new ProtoEventBase();
-        	base.unmarshal(data);
-
-        	switch (base.eventType)
+            int eventType = YYSdkWrapper.getEventType(data);
+        	switch (eventType)
         	{
         	    case ProtoEvent.EventType.PROTO_EVENT_LOGIN_RES:
         	    {
@@ -45,7 +39,7 @@ public class LoginActivity extends UIActivity
         	    }
         	    default:
         	    {
-        	    	Log.i("YCSdk", "LoginActivity::YYHandler: Not care eventType:" + base.eventType + ", len:");
+        	    	Log.i("YCSdk", "LoginActivity::YYHandler: Not care eventType:" + eventType);
         	    }
         	}
         }
@@ -316,141 +310,20 @@ public class LoginActivity extends UIActivity
     protected void onResume()
     {
         super.onResume();
-        mApp.getProtoMgr().addHandlerWatcher(mHandler);
+        YYSdkWrapper.addHandlerWatcher(mHandler);
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        mApp.getProtoMgr().removeHandlerWatcher(mHandler);
+        YYSdkWrapper.removeHandlerWatcher(mHandler);
     }
-//
-//    private void initAccountList()
-//    {
-//        accountInfoList = AccountManager.getInstance().getAccounts();
-//        if (accountInfoList.size() > 0)
-//        {
-//            AccountInfo info = accountInfoList.get(0);
-//            if (info != null)
-//            {
-//                mUserName.setText(info.username);
-//                mPassword.setText(info.password);
-//            }
-//        }
-//
-//        View viewShowAccounts = findViewById(R.id.show_list);
-//        if (accountInfoList.size() > 0)
-//        {
-//            final View anchor = findViewById(R.id.edit_account_parent);
-//            accountList = new AccountList(this, anchor,
-//                                          new SelectAccountListener()
-//            {
-//                @Override
-//                public void onSelect(int index)
-//                {
-//                    AccountInfo info = accountInfoList.get(index);
-//                    mUserName.setText(info.username);
-//                    mPassword.setText(info.password);
-//                }
-//
-//                @Override
-//                public void onRemove(int index)
-//                {
-//                    if (index >= accountInfoList.size())
-//                    {
-//                        return;
-//                    }
-//                    final AccountInfo info = accountInfoList.get(index);
-//                    if (info == null)
-//                    {
-//                        return;
-//                    }
-//                    String title = getString(R.string.str_remove_account);
-//                    String msg = getString(R.string.str_want_to_remove_account) + info.username;
-//
-//                    new AlertDialog.Builder(LoginActivity.this)
-//                    .setTitle(title)
-//                    .setMessage(msg)
-//                    .setPositiveButton("Confirm", new DialogInterface.OnClickListener()
-//                    {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which)
-//                        {
-//                            AccountManager.getInstance().deleteAccount(info.username);
-//                            accountList.dismiss();
-//                            accountInfoList.remove(info);
-//                            initAccountList();
-//                        }
-//                    })
-//                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-//                    {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which)
-//                        {
-//
-//                        }
-//                    })
-//                    .show();
-//                }
-//            });
-//            viewShowAccounts.setVisibility(View.VISIBLE);
-//            viewShowAccounts.setOnClickListener(new View.OnClickListener()
-//            {
-//                @Override
-//                public void onClick(View v)
-//                {
-//                    accountList.show(anchor);
-//                }
-//            });
-//        }
-//    }
+
 
     private void login(String account, String password)
     {
-//        //get Network status
-//        int networkType = getNetType(LoginActivity.this);
-//        Log.i(TAG, "networkType is " + networkType + "");
-//
-//        if(networkType != ProtoConst.SYSNET_MOBILE && networkType != ProtoConst.SYSNET_WIFI)
-//        {
-//            Toast.makeText(LoginActivity.this, getResources().getString(R.string.str_disconnect), Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        mProgressDlg = new AdvProgressDlg(LoginActivity.this);
-//        mProgressDlg.setMessage("logining");
-//        mProgressDlg.setOnCancelListener(new OnCancelListener()
-//        {
-//            @Override
-//            public void onCancel(DialogInterface dialog)
-//            {
-//                logout();
-//            }
-//        });
-//
-//        mProgressDlg.show();
-
-    	Log.i(TAG, "LoginActivity::login: account=" + account + ", password=" + password);
-
-        YYApplication app = (YYApplication)getApplication();
-        int appKey       = app.getAppKey();
-        int ver          = app.getAppVerInt();
-        int expiretime   = 60 * 60 * 24;
-        String secretKey = app.getSecretKey();
-
-        YCTokenRequest tokenReq = new YCTokenRequest(appKey, ver, expiretime, secretKey);
-//        tokenReq.addStr2StrProp(new Str2StrProp("strPropKey", "strPropVal"));
-//        tokenReq.addStr2U32Prop(new Str2U32Prop("key32", 32));
-//        tokenReq.addStr2U64Prop(new Str2U64Prop("key64", 64));
-
-        String token =  new String(app.getProtoMgr().getYCTokenHex(tokenReq.getBytes()));
-        LoginReq req = new LoginReq(account, password, token, LoginReq.THIRD_LOGIN);
-        req.context = "login";
-
-        app.getProtoMgr().sendRequest(req.getBytes());
-
-        Log.i(TAG, "LoginActivity::login: token:" + token.length());
+        YYSdkWrapper.login(account, password);
 //        byte[] passwdByte = mApp.getLogin().getPasswdSha1(password);
 //        String passwdSha1 = new String(passwdByte);
 //        Log.i(TAG, "passwd=" + password + "passwdSha1=" + passwdSha1 + " length=" + passwdSha1.length());
@@ -470,24 +343,12 @@ public class LoginActivity extends UIActivity
 
     private void onLoginRes(byte[] data)
     {
-    	ProtoEvtLoginRes res = new ProtoEvtLoginRes();
-    	res.unmarshal(data);
-
-    	mApp.setOnline(res.res == ProtoEvtLoginRes.LOGIN_SUCESS);
-
-    	if (res.res != ProtoEvtLoginRes.LOGIN_SUCESS)
+        YYSdkWrapper.parseLoginResponse(data);
+    	if (!YYSdkWrapper.isLoggedIn())
     	{
             logout();
-            new AlertDialog.Builder(LoginActivity.this)
-            .setMessage("login failed, res=" + res + " udbRes=" + res.udbRes)
-            .show();
-
     		return;
     	}
-
-    	Log.i("xuawang", "LoginActivity::onLoginRes: Login succ, uid=" + res.uid + ", context=" + res.context);
-
-        mApp.setUid(res.uid);
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);

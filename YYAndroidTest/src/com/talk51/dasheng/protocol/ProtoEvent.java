@@ -1,14 +1,15 @@
 package com.talk51.dasheng.protocol;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import android.util.Log;
 
 public class ProtoEvent
 {
     static public class EventType
     {
+        final static public int PROTO_EVENT_INVALID                   = -1;
         final static public int PROTO_EVENT_LOGIN_RES                 = 1;
         final static public int PROTO_EVENT_LOGOUT                    = 2;
 
@@ -131,6 +132,7 @@ public class ProtoEvent
             context   = "";
         }
 
+        @Override
         public String toString()
         {
             try
@@ -211,6 +213,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -287,6 +290,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -361,6 +365,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -536,6 +541,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -619,6 +625,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -699,6 +706,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -760,6 +768,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);
@@ -820,6 +829,7 @@ public class ProtoEvent
             return super.toString();
         }
 
+        @Override
         public void unmarshal(byte[] data)
         {
             super.unmarshal(data);

@@ -1,31 +1,24 @@
 package com.talk51.dasheng;
 
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.Application;
-import android.content.Context;
-import android.os.Process;
-import android.util.Log;
 
-import com.hjc.SDKParam.SDKParam.AppInfo;
 import com.yyproto.outlet.IProtoMgr;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class YYApplication extends Application
 {
-    private boolean mIsOnline     = false;
-    private int     mAppKey       = /*1818061784*/15012;
+/*    private boolean mIsOnline     = false;
+    private int     mAppKey       = 1818061784;
     private long    mTerminalType = 0x20001;
     private long    mUid          = 0;
-    private byte[]  mAppVer       = "2".getBytes();
-    private byte[]  mSecretKey    = /*"9f93c099_4"*/"84c592b9_18cf_4".getBytes();
+    private byte[]  mAppVer       = "1".getBytes();
+    private byte[]  mSecretKey    = "9f93c099_4".getBytes();*/
 
     private static AtomicReference<YYApplication> mInstance =
         new AtomicReference<YYApplication>();
 
-    private IProtoMgr mProtoMgr = null;
+    /*private IProtoMgr mProtoMgr = null;*/
 
     public static YYApplication getInstance()
     {
@@ -37,8 +30,9 @@ public class YYApplication extends Application
     {
         super.onCreate();
         mInstance.set(this);
+        YYSdkWrapper.initProtoMgr(this);
 
-        if(isPkgMainProc())
+        /*if(isPkgMainProc())
         {
             Log.i("YYSDK", "YYApplication onCreate");
 
@@ -50,16 +44,10 @@ public class YYApplication extends Application
 
             mProtoMgr = IProtoMgr.instance();
             mProtoMgr.init(getApplicationContext(), app, null);
-        }
+        }*/
     }
 
-    @Override
-    public void onTerminate()
-    {
-
-    }
-
-    public boolean isPkgMainProc()
+    /*public boolean isPkgMainProc()
     {
         ActivityManager am = ((ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE));
         List<RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
@@ -73,25 +61,25 @@ public class YYApplication extends Application
             }
         }
         return false;
-    }
+    }*/
 
     public IProtoMgr getProtoMgr()
     {
-        return mProtoMgr;
+        return YYSdkWrapper.getProtoMgr();
     }
 
     //	public YYHandlerMgr getHandlerMgr(){
     //		return mHandlerMgr;
     //	}
 
-    public void deInit()
+    /*public void deInit()
     {
-        IProtoMgr.instance().deInit();
+        YYSdkWrapper.deInitProtoMgr();
     }
 
     public boolean isOnline()
     {
-        return mIsOnline;
+        //return mIsOnline;
     }
 
     public void setOnline(boolean online)
@@ -103,7 +91,7 @@ public class YYApplication extends Application
 
     public void setUid(long uid)
     {
-        mUid = uid;
+        //mUid = uid;
     }
 
     public long getUid()
@@ -113,7 +101,7 @@ public class YYApplication extends Application
 
     public int getAppKey()
     {
-        return mAppKey;
+        //return YYSdkWrapper.;
     }
 
     public String getAppVer()
@@ -140,5 +128,5 @@ public class YYApplication extends Application
     public String getSecretKey()
     {
         return new String(mSecretKey);
-    }
+    }*/
 }
