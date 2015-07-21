@@ -13,7 +13,7 @@ import com.talk51.dasheng.protocol.ProtoEvent;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEventBase;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtLoginRes;
 import com.talk51.dasheng.protocol.ProtoReq.LoginReq;
-import com.talk51.dasheng.protocol.ProtoReq.LoginoutReq;
+import com.talk51.dasheng.protocol.ProtoReq.LogoutReq;
 import com.talk51.dasheng.protocol.ProtoReq.YCTokenRequest;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.SDKParam;
@@ -496,7 +496,7 @@ public class LoginActivity extends UIActivity
 
     private void logout()
     {
-    	LoginoutReq req = new LoginoutReq();
+    	LogoutReq req = new LogoutReq();
     	mApp.getProtoMgr().sendRequest(req.getBytes());
 
     	mApp.setUid(0);

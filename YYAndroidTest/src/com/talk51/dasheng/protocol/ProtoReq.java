@@ -507,9 +507,9 @@ public class ProtoReq
         }
     }
 
-    static public class LoginoutReq extends ProtoReqBase
+    static public class LogoutReq extends ProtoReqBase
     {
-        public LoginoutReq()
+        public LogoutReq()
         {
             reqType = ReqType.PROTO_REQ_LOGOUT;
         }

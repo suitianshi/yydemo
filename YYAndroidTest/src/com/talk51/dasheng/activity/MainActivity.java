@@ -16,7 +16,7 @@ import com.talk51.dasheng.fragment.MainFragment;
 import com.talk51.dasheng.fragment.MessageFragment;
 import com.talk51.dasheng.fragment.PreLoginFragment;
 import com.talk51.dasheng.fragment.ProfileFragment;
-import com.talk51.dasheng.protocol.ProtoReq.LoginoutReq;
+import com.talk51.dasheng.protocol.ProtoReq.LogoutReq;
 import com.talk51.dasheng.widget.SlidingPaneLayout;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.SDKParam;
@@ -242,7 +242,7 @@ public static String tag = "xuawang";
         // TODO Auto-generated method stub
         Log.i(TAG, "kelvin MainActivity Logout");
 
-    	LoginoutReq req = new LoginoutReq();
+    	LogoutReq req = new LogoutReq();
     	mApp.getProtoMgr().sendRequest(req.getBytes());
 
     	mApp.setUid(0);
