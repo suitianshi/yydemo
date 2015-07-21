@@ -35,7 +35,7 @@ import java.util.Map;
 
 
 public class LiveActivity extends Activity implements YCCameraStatusListener {
-	private String       TAG = "CameraActivity";
+	private String       TAG = "xuawang";
 
 	private boolean        mAudioLinkConnected = false;
 	private boolean        mVideoLinkConnected = false;
@@ -129,7 +129,7 @@ public class LiveActivity extends Activity implements YCCameraStatusListener {
 				mChatAdpter.notifyDataSetChanged();
 				break;
 			default:
-				//Log.e(TAG, "can't handle the message:" + msg.what);
+				Log.e(TAG, "can't handle the message:" + msg.what);
 				break;
 			}
 		}
