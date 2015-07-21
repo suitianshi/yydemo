@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.hjc.SDKParam.SDKParam.AppInfo;
 import com.talk51.dasheng.protocol.ProtoEvent;
+import com.talk51.dasheng.protocol.ProtoEvent.NetStateChangeRes;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEventBase;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtLoginRes;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessJoinRes;
@@ -17,6 +18,14 @@ import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.IProtoMgr;
 
 public class YYSdkWrapper {
+    public static interface INetStateChange {
+        public void onNetStateChange(int status);
+    }
+
+    public static interface IOnChatMsgReceive {
+        public void onChatMsg(String msg, long from);
+    }
+
     public static final int APP_KEY = 1818061784;
     private static final int TERMINAL_TYPE = 0x20001;
     public static final byte[] APP_VERSION = "1".getBytes();
@@ -26,6 +35,7 @@ public class YYSdkWrapper {
     private static final String TEST_ACCOUNT = "51talkwx";
     private static final int EXPIRE_IN = Integer.MAX_VALUE;
     private static final ProtoEventBase mEventBase = new ProtoEventBase();
+    private static final NetStateChangeRes mNetStateCb = new NetStateChangeRes();
 
     private static final int FLAG_NONE = 0x0;
     private static final int FLAG_LOGGED_IN = 0x1;
@@ -43,6 +53,22 @@ public class YYSdkWrapper {
     private static String mAccount = "";
     private static int mSid = 0;
 
+    private static WeakContainer<INetStateChange> mNetStateChangeCb;
+
+    public void addNetStateMonitor(INetStateChange cb) {
+        if(mNetStateChangeCb == null) {
+            mNetStateChangeCb = new WeakContainer<YYSdkWrapper.INetStateChange>();
+        }
+        mNetStateChangeCb.add(cb);
+    }
+
+    public void removeNetStateMonitor(INetStateChange cb) {
+        if(mNetStateChangeCb == null) {
+            return;
+        }
+        mNetStateChangeCb.remove(cb);
+    }
+
     public static int getEventType(byte[] data) {
         if(data == null) {
             return ProtoEvent.EventType.PROTO_EVENT_INVALID;
@@ -51,6 +77,30 @@ public class YYSdkWrapper {
         mEventBase.context = "";
         mEventBase.unmarshal(data);
         return mEventBase.eventType;
+    }
+
+    public static void parseNetStateChange(byte[] data) {
+        mNetStateCb.context = "";
+        mNetStateCb.status = 0;
+        mNetStateCb.unmarshal(data);
+        switch (mNetStateCb.status) {
+        case NetStateChangeRes.STATE_UNAVAILABLE:
+            setLoggedIn(false);
+            //TODO: how about then?(we're not retrying)
+            break;
+        case NetStateChangeRes.STATE_AVAILABLE_NOW:
+            break;
+        case NetStateChangeRes.STATE_LOGIN_SUCCESS:
+        case NetStateChangeRes.STATE_RELOGIN_SUCCESS:
+            break;
+        case NetStateChangeRes.STATE_UNAVAILABLE_RECONNECTING:
+        case NetStateChangeRes.STATE_UNAVAILABLE_WITH_RETRY:
+        case NetStateChangeRes.STATE_RECONNECT_NET:
+            setLoggedIn(false);
+            break;
+        default:
+            break;
+        }
     }
 
     public static void parseLoginResponse(byte[] data) {

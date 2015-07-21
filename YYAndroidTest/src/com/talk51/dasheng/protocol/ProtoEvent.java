@@ -13,6 +13,7 @@ public class ProtoEvent
         final static public int PROTO_EVENT_LOGIN_RES                 = 1;
         final static public int PROTO_EVENT_LOGOUT                    = 2;
 
+        final static public int PROTO_EVENT_NET_STATE_CHANGE          = 100;
 
         final static public int PROTO_EVENT_SESS_OPER_RES             = 501;
         final static public int PROTO_EVENT_SESS_JOIN_RES             = 502;
@@ -162,6 +163,36 @@ public class ProtoEvent
 
                 eventType = jobj.optInt("eventType");
                 context   = jobj.optString("context");
+            }
+            catch (Exception e)
+            {
+                Log.i("YCSdk", "ProtoEventBase::unmarshal: error:" + e);
+            }
+        }
+    }
+
+    static public class NetStateChangeRes extends ProtoEventBase {
+        public static final int STATE_UNAVAILABLE = 0;  //网络断开
+        public static final int STATE_RECONNECT_NET = 1;//正在进行网络连接
+        public static final int STATE_AVAILABLE_NOW = 2;//网络连接成功
+        public static final int STATE_LOGIN_SUCCESS = 3;//用户登录成功
+        public static final int STATE_UNAVAILABLE_RECONNECTING = 4;//网络中断，正在重新建立连接中
+        public static final int STATE_RELOGIN_SUCCESS = 5;//重新登录成功
+        public static final int STATE_UNAVAILABLE_WITH_RETRY = 6;//网络连接断开（底层会重试）
+
+        public int status;
+
+        @Override
+        public void unmarshal(byte[] data)
+        {
+            super.unmarshal(data);
+
+            try
+            {
+                String     buf  = new String(data);
+                JSONObject jobj = new JSONObject(buf);
+
+                status          = jobj.optInt("status");
             }
             catch (Exception e)
             {
