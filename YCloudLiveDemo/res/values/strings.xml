@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">直播Demo</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="live">直播</string>
+    <string name="login">登录</string>
+    <string name="appid">APPID</string>
+    <string name="uid">用户ID</string>
+    <string name="sid">频道号</string>
+
+    <string name="input_appid">请输入APPID</string>
+    <string name="input_uid">请输入用户ID</string>
+    <string name="input_sid">请输入频道号</string>
+    <string name="input_msg">说点什么吧</string>
+    <string name="send">发送</string>
+    
+     <string name="param_invalid">请输入完整信息</string>
+    <string name="err_no_server">服务器连接失败，请稍后重试</string>
+
+</resources>
