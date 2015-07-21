@@ -1,9 +1,9 @@
 package com.talk51.dasheng.protocol;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import android.util.Log;
 
 public class ProtoReq
 {
@@ -447,6 +447,7 @@ public class ProtoReq
             context = "";
         }
 
+        @Override
         public String toString()
         {
             try
@@ -555,7 +556,7 @@ public class ProtoReq
         public int    propKey;
         public String propVal = null;
 
-        SessionJoinProp(int key, String val)
+        public SessionJoinProp(int key, String val)
         {
             propKey = key;
             propVal = val;

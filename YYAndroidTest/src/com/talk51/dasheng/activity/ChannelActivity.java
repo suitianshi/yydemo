@@ -35,7 +35,7 @@ import com.talk51.dasheng.protocol.ProtoReq.SessQueryUserInfoReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessTextChatReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessUpdateChInfoReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessUpdateUserInfoReq;
-import com.talk51.dasheng.protocol.ProtoReq.Str2StrProp;
+import com.talk51.dasheng.protocol.ProtoReq.SessionJoinProp;
 import com.talk51.dasheng.protocol.ProtoReq.StrProp;
 import com.talk51.dasheng.protocol.ProtoReq.YCTokenRequest;
 import com.yyproto.base.YYHandler;
@@ -150,13 +150,14 @@ public class ChannelActivity extends UIFragmentActivity
         String secretKey = app.getSecretKey();
 
         YCTokenRequest tokenReq = new YCTokenRequest(appKey, ver, expiretime, secretKey);
-        tokenReq.addStr2StrProp(new Str2StrProp("OPTYPE", "1"));
+        //tokenReq.addStr2StrProp(new Str2StrProp("OPTYPE", "1"));
 //        tokenReq.addStr2U32Prop(new Str2U32Prop("key", 32));
 //        tokenReq.addStr2U64Prop(new Str2U64Prop("key", 64));
 
         String token =  new String(app.getProtoMgr().getYCTokenHex(tokenReq.getBytes()));
 
         SessJoinReq req = new SessJoinReq();
+        req.addProp(new SessionJoinProp(3,"sd"));
         req.topSid   = mSid;
         req.subSid   = mSubsid;
         req.asid     = 0;
