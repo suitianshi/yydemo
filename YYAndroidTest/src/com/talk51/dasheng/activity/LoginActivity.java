@@ -10,7 +10,6 @@ import com.talk51.dasheng.R;
 import com.talk51.dasheng.YYApplication;
 import com.talk51.dasheng.YYSdkWrapper;
 import com.talk51.dasheng.protocol.ProtoEvent;
-import com.talk51.dasheng.protocol.ProtoReq.LogoutReq;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.SDKParam;
 
@@ -357,11 +356,7 @@ public class LoginActivity extends UIActivity
 
     private void logout()
     {
-    	LogoutReq req = new LogoutReq();
-    	mApp.getProtoMgr().sendRequest(req.getBytes());
-
-    	mApp.setUid(0);
-        mApp.setOnline(false);
+    	YYSdkWrapper.logout();
     }
 
 //    interface SelectAccountListener

@@ -13,11 +13,10 @@ import android.widget.TextView;
 
 import com.talk51.dasheng.R;
 import com.talk51.dasheng.YYApplication;
+import com.talk51.dasheng.YYSdkWrapper;
 import com.talk51.dasheng.protocol.ProtoEvent;
 import com.talk51.dasheng.protocol.ProtoEvent.OnlineUser;
-import com.talk51.dasheng.protocol.ProtoEvent.ProtoEventBase;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessJoinQueueRes;
-import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessJoinRes;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessLeaveQueueRes;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessOperRes;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessQueryQueueRes;
@@ -26,7 +25,6 @@ import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessTextChatBroadRes;
 import com.talk51.dasheng.protocol.ProtoReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessFetchChInfoReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessJoinQueueReq;
-import com.talk51.dasheng.protocol.ProtoReq.SessJoinReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessLeaveQueueReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessLeaveReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessPullUserListReq;
@@ -35,9 +33,7 @@ import com.talk51.dasheng.protocol.ProtoReq.SessQueryUserInfoReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessTextChatReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessUpdateChInfoReq;
 import com.talk51.dasheng.protocol.ProtoReq.SessUpdateUserInfoReq;
-import com.talk51.dasheng.protocol.ProtoReq.SessionJoinProp;
 import com.talk51.dasheng.protocol.ProtoReq.StrProp;
-import com.talk51.dasheng.protocol.ProtoReq.YCTokenRequest;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.SDKParam;
 
@@ -80,11 +76,8 @@ public class ChannelActivity extends UIFragmentActivity
         @MessageHandler(message = SDKParam.Message.messageId)
         public void onEvent(byte[] data)
         {
-            Log.e(MainActivity.tag, new String(data));
-            ProtoEventBase base = new ProtoEventBase();
-            base.unmarshal(data);
-
-            switch (base.eventType)
+            int eventType = YYSdkWrapper.getEventType(data);
+            switch (eventType)
             {
             case ProtoEvent.EventType.PROTO_EVENT_SESS_JOIN_RES:
             {
@@ -123,7 +116,7 @@ public class ChannelActivity extends UIFragmentActivity
             }
             default:
             {
-                Log.i("xuawang", "ChannelActivity::YYHandler: Not care eventType:" + base.eventType + ", len:" + data.length);
+                Log.i("xuawang", "ChannelActivity::YYHandler: Not care eventType:" + eventType + ", len:" + data.length);
             }
             }
         }
@@ -143,27 +136,7 @@ public class ChannelActivity extends UIFragmentActivity
         mSid = intent.getIntExtra("sid", 0);
         mSubsid = intent.getIntExtra("subsid", 0);
 
-        YYApplication app = (YYApplication)getApplication();
-        int appKey       = app.getAppKey();
-        int ver          = app.getAppVerInt();
-        int expiretime   = 60 * 60 * 24;
-        String secretKey = app.getSecretKey();
-
-        YCTokenRequest tokenReq = new YCTokenRequest(appKey, ver, expiretime, secretKey);
-        //tokenReq.addStr2StrProp(new Str2StrProp("OPTYPE", "1"));
-//        tokenReq.addStr2U32Prop(new Str2U32Prop("key", 32));
-//        tokenReq.addStr2U64Prop(new Str2U64Prop("key", 64));
-
-        String token =  new String(app.getProtoMgr().getYCTokenHex(tokenReq.getBytes()));
-
-        SessJoinReq req = new SessJoinReq();
-        req.addProp(new SessionJoinProp(3,"sd"));
-        req.topSid   = mSid;
-        req.subSid   = mSubsid;
-        req.asid     = 0;
-        req.appToken = token;
-
-        mApp.getProtoMgr().sendRequest(req.getBytes());
+        YYSdkWrapper.joinSession(mSid, mSubsid);
 
         initButton();
     }
@@ -177,75 +150,17 @@ public class ChannelActivity extends UIFragmentActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState)
-    {
-        // TODO Auto-generated method stub
-        super.onSaveInstanceState(outState);
-        //        YLog.info(TAG, ">>ChannelActivity onSaveInstanceState.");
-    }
-
-
-    private void startOnlineReq()
-    {
-        mOnlineReqRunnable = new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                ctxTest++;
-                //                SessRequest.SessOnlineReq req = new SessRequest.SessOnlineReq(mSid, mSid);
-                //                req.setCtx("hello mobileYY " + ctxTest);
-                //                mApp.getSess().sendRequest(req);
-                mHandler.postDelayed(mOnlineReqRunnable, 10 * 1000);
-            }
-        };
-        mHandler.post(mOnlineReqRunnable);
-    }
-
-    @Override
     protected void onResume()
     {
         super.onResume();
-        mApp.getProtoMgr().addHandlerWatcher(mHandler);
+        YYSdkWrapper.addHandlerWatcher(mHandler);
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        mApp.getProtoMgr().removeHandlerWatcher(mHandler);
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStop()
-    {
-        // TODO Auto-generated method stub
-        super.onStop();
-        //        mChannelVideoController.pauseSubscribeVideo();
-        //        YLog.info(TAG, ">>ChannelActivity onStop.");
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        //        if (mBtnFullScreen.isSelected())
-        //        {
-        //            YLog.info(TAG, ">>ChannelActivity orientation is horizontal now, it needs change to vertical.");
-        //            doUnFullScreen();
-        //            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //            mBtnFullScreen.setSelected(false);
-        //            return;
-        //        }
-
-        //        mApp.leave();
-        super.onBackPressed();
-        //        YLog.info(TAG, ">>ChannelActivity onBackPressed.");
+        YYSdkWrapper.removeHandlerWatcher(mHandler);
     }
 
     private void initButton()
@@ -353,28 +268,17 @@ public class ChannelActivity extends UIFragmentActivity
 
     private void onJoinRes(byte []data)
     {
-        ProtoEvtSessJoinRes res = new ProtoEvtSessJoinRes();
-        res.unmarshal(data);
-
         mChannelName = (TextView)findViewById(R.id.channelname);
-        if (res.errId == ProtoEvtSessJoinRes.OPERATOR_SUCCESS)
+        YYSdkWrapper.parseJoinSessionResponse(data);
+        if (YYSdkWrapper.isInSession())
         {
-            mSid    = res.topSid;
-            mAsid   = res.aSid;
-            mSubsid = res.subSid;
-
-            mChannelName.setText("进频道成功\r\ntopSid:" + res.topSid + ", subSid:" + res.subSid);
-        }
+            mChannelName.setText("ok, sid:"+YYSdkWrapper.getSessionId());
+       }
         else
         {
-            mSid    = 0;
-            mAsid   = 0;
-            mSubsid = 0;
+            mChannelName.setText("failed,sid:"+YYSdkWrapper.getSessionId());
+       }
 
-            mChannelName.setText("进频道失败\r\ntopSid:" + res.topSid + ", subSid:" + res.subSid + ", errId=" + res.errId);
-        }
-
-        Log.i("YCSdk", "ChannelActivity::onJoinRes: join res, errId=" + res.errId);
     }
 
     private void leaveChannel()

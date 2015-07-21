@@ -7,24 +7,29 @@ import com.hjc.SDKParam.SDKParam.AppInfo;
 import com.talk51.dasheng.protocol.ProtoEvent;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEventBase;
 import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtLoginRes;
+import com.talk51.dasheng.protocol.ProtoEvent.ProtoEvtSessJoinRes;
 import com.talk51.dasheng.protocol.ProtoReq.LoginReq;
+import com.talk51.dasheng.protocol.ProtoReq.LogoutReq;
+import com.talk51.dasheng.protocol.ProtoReq.SessJoinReq;
+import com.talk51.dasheng.protocol.ProtoReq.SessionJoinProp;
 import com.talk51.dasheng.protocol.ProtoReq.YCTokenRequest;
 import com.yyproto.base.YYHandler;
 import com.yyproto.outlet.IProtoMgr;
 
 public class YYSdkWrapper {
-    private static final int APP_KEY = 1818061784;
+    public static final int APP_KEY = 1818061784;
     private static final int TERMINAL_TYPE = 0x20001;
-    private static final byte[] APP_VERSION = "1".getBytes();
-    private static final int APP_VERSION_INT = 1;
+    public static final byte[] APP_VERSION = "1".getBytes();
+    public static final int APP_VERSION_INT = 1;
     private static final byte[] APP_SECRET = "9f93c099_4".getBytes();
-    private static final String APP_SECRET_STR = "9f93c099_4";
+    public static final String APP_SECRET_STR = "9f93c099_4";
     private static final String TEST_ACCOUNT = "51talkwx";
     private static final int EXPIRE_IN = Integer.MAX_VALUE;
     private static final ProtoEventBase mEventBase = new ProtoEventBase();
 
     private static final int FLAG_NONE = 0x0;
     private static final int FLAG_LOGGED_IN = 0x1;
+    private static final int FLAG_IN_SESSION = 0x2;
 
     private static final String tag = "xuawang";
     private static IProtoMgr mProtoMgr;
@@ -36,6 +41,7 @@ public class YYSdkWrapper {
 
     private static long mUid = 0;
     private static String mAccount = "";
+    private static int mSid = 0;
 
     public static int getEventType(byte[] data) {
         if(data == null) {
@@ -72,7 +78,60 @@ public class YYSdkWrapper {
         } else {
             //we can do nothing if we're logged off
             mFlag = FLAG_NONE;
+            mAccount = "";
+            mUid = 0;
         }
+    }
+
+    public static void joinSession(int sid, int subSid) {
+        String token = getYCTokenHex();
+
+        SessJoinReq req = new SessJoinReq();
+        //to kick off the same account
+        req.addProp(new SessionJoinProp(3, "sd"));
+        req.topSid   = sid;
+        req.subSid   = subSid;
+        req.asid     = 0;
+        req.appToken = token;
+
+        mSid = sid;
+
+        mProtoMgr.sendRequest(req.getBytes());
+    }
+
+    public static void parseJoinSessionResponse(byte []data)
+    {
+        ProtoEvtSessJoinRes res = new ProtoEvtSessJoinRes();
+        res.unmarshal(data);
+
+        mSid = res.topSid;
+        if (res.errId == ProtoEvtSessJoinRes.OPERATOR_SUCCESS)
+        {
+            mFlag |= FLAG_IN_SESSION;
+        }
+        else
+        {
+            mFlag &= ~FLAG_IN_SESSION;
+            //mSid = 0;
+        }
+    }
+
+    public static long getUid() {
+        return mUid;
+    }
+
+    public static int getSessionId() {
+        return mSid;
+    }
+
+    public static boolean isInSession() {
+        return ((mFlag & FLAG_IN_SESSION) != 0);
+    }
+
+    public static void logout() {
+        LogoutReq req = new LogoutReq();
+        mProtoMgr.sendRequest(req.getBytes());
+        setLoggedIn(false);
     }
 
     public static String getYCTokenHex() {

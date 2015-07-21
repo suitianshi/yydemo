@@ -72,21 +72,18 @@ public class YYApplication extends Application
     //		return mHandlerMgr;
     //	}
 
-    /*public void deInit()
+    public void deInit()
     {
         YYSdkWrapper.deInitProtoMgr();
     }
 
     public boolean isOnline()
     {
-        //return mIsOnline;
+        return YYSdkWrapper.isLoggedIn();
     }
 
     public void setOnline(boolean online)
     {
-        mIsOnline = online;
-
-        Log.i("YCSdk", "YYApplication::setOnline: online=" + online);
     }
 
     public void setUid(long uid)
@@ -96,37 +93,28 @@ public class YYApplication extends Application
 
     public long getUid()
     {
-        return mUid;
+        return YYSdkWrapper.getUid();
     }
 
     public int getAppKey()
     {
-        //return YYSdkWrapper.;
+        return YYSdkWrapper.APP_KEY;
     }
 
     public String getAppVer()
     {
-        return new String(mAppVer);
+        return new String(YYSdkWrapper.APP_VERSION);
     }
 
     public int getAppVerInt()
     {
-        int ver = 0;
-        try
-        {
-            ver = Integer.parseInt(new String(mAppVer));
-        }
-        catch (Exception e)
-        {
-            ver = 0;
-            Log.i("YCSdk", "YYApplication::getAppVerInt: Set ver as 0:" + mAppVer);
-        }
 
-        return ver;
+
+        return YYSdkWrapper.APP_VERSION_INT;
     }
 
     public String getSecretKey()
     {
-        return new String(mSecretKey);
-    }*/
+        return YYSdkWrapper.APP_SECRET_STR;
+    }
 }
