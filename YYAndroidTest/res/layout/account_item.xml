@@ -6,5 +6,6 @@
 
     <TextView android:id="@+id/laji"
         android:layout_width="100dp"
+        android:text="start"
         android:layout_height="100dp"/>
 </LinearLayout>
