@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="act_slide_anim_duration">200</integer>
-    <integer name="integer_init">0</integer>
-    <integer name="anim_length">200</integer>
-    <integer name="time_out_interval">15000</integer>
-    <integer name="live_bcast_min_valid_interval">60000</integer>
-    <integer name="update_live_interval">1000</integer>
-</resources>

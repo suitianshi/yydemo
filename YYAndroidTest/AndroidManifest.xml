@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.talk51.dasheng"
+    package="com.test.sensor"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -62,75 +62,18 @@
 
 
     <application
-        android:name="com.talk51.dasheng.YYApplication"
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.talk51.dasheng.activity.LoginActivity">
-        </activity>
+      >
         
         <activity
-            android:name="com.talk51.dasheng.activity.MainActivity" 
-            android:label="@string/app_name"
-            android:launchMode="standard" >
+            android:name="com.test.sensor.MainActivity" 
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>       
         </activity>
         
-        <activity
-            android:name="com.talk51.dasheng.activity.ChannelEntryActivity" >
-        </activity>
         
-        <activity
-            android:name="com.talk51.dasheng.activity.ChannelActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait">
-        </activity>
-        
-        <!-- 
-        <service
-            android:name="com.duowan.mobile.service.ProxyService"
-            android:enabled="true"
-            android:label="ProxyService" >
-        </service>
-        <service
-            android:name="com.duowan.mobile.media.YYMediaService"
-            android:enabled="true"
-            android:label="YYMediaService" >
-        </service>
-         -->
-        
-        <!--
-         <receiver
-            android:name="com.yy.pushsvc.PushSvcReceiver"
-            android:enabled="true"
-            android:process="com.yy.pushsvc.PushService">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
-        -->
-        
-         <meta-data android:name="appKey" android:value="12801" />      
-         
-         <!-- 
-        <receiver
-            android:name="com.yy.mobile.MyReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="com.yy.pushsvc.PushService.NOTIFICATION_RECEIVED" />
-                <action android:name="com.yy.pushsvc.PushService.NOTIFICATION_OPENED" />  
-                <category android:name="com.yy.pushsvc" />
-            </intent-filter>
-        </receiver>
-         -->    
          
     </application>
 

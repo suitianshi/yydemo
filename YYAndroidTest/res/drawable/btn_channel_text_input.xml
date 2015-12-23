@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="false" android:state_checked="false" android:drawable="@drawable/input_open"/>
-    <item android:state_pressed="true" android:state_checked="false" android:drawable="@drawable/input_open_press"/>
-    <item android:state_pressed="false" android:state_checked="true" android:drawable="@drawable/input_close"/>
-    <item android:state_pressed="true" android:state_checked="true" android:drawable="@drawable/input_close_press"/>
-</selector>
