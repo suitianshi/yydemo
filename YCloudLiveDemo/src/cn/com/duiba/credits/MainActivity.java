@@ -10,16 +10,17 @@ import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
+
 import cn.com.duiba.credits.CreditActivity.CreditsListener;
 
 public final class MainActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		Button btn=new Button(this);
 		btn.setText("Enter");
-		
+
 		setContentView(btn);
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -28,9 +29,9 @@ public final class MainActivity extends Activity{
 				intent.setClass(MainActivity.this, CreditActivity.class);
                 intent.putExtra("navColor", "#0acbc1");    //配置导航条的背景颜色，请用#ffffff长格式。
                 intent.putExtra("titleColor", "#ffffff");    //配置导航条标题的颜色，请用#ffffff长格式。
-                intent.putExtra("url", "http://www.duiba.com.cn/test/demoRedirectSAdfjosfdjdsa");    //配置自动登陆地址，每次需服务端动态生成。
+                intent.putExtra("url", "http://www.meipai.com/media/449544298");    //配置自动登陆地址，每次需服务端动态生成。
 				startActivity(intent);
-				
+
 				CreditActivity.creditsListener = new CreditsListener() {
 					/**
 			         * 当点击分享按钮被点击
@@ -39,7 +40,8 @@ public final class MainActivity extends Activity{
 			         * @param shareTitle 分享的标题
 			         * @param shareSubtitle 分享的副标题
 			         */
-					public void onShareClick(WebView webView, String shareUrl,String shareThumbnail, String shareTitle,  String shareSubtitle) {
+					@Override
+                    public void onShareClick(WebView webView, String shareUrl,String shareThumbnail, String shareTitle,  String shareSubtitle) {
 						//当分享按钮被点击时，会调用此处代码。在这里处理分享的业务逻辑。
 						new AlertDialog.Builder(webView.getContext())
 						.setTitle("分享信息")
@@ -47,32 +49,34 @@ public final class MainActivity extends Activity{
 						.setNegativeButton("确定", null)
 						.show();
 					}
-					
+
 					/**
 			         * 当点击登录
 			         * @param webView 用于登录成功后返回到当前的webview并刷新。
 			         * @param currentUrl 当前页面的url
 			         */
-					public void onLoginClick(WebView webView, String currentUrl) {
+					@Override
+                    public void onLoginClick(WebView webView, String currentUrl) {
 						//当未登录的用户点击去登录时，会调用此处代码。
 						//为了用户登录后能回到之前未登录前的页面。
 						//当用户登录成功后，需要重新动态生成一次自动登录url，需包含redirect参数，将currentUrl放入redirect参数。
-						new AlertDialog.Builder(webView.getContext()) 
+						new AlertDialog.Builder(webView.getContext())
 					 	.setTitle("跳转登录")
 					 	.setMessage("跳转到登录页面？")
 					 	.setPositiveButton("是", null)
 					 	.setNegativeButton("否", null)
 					 	.show();
 					}
-					
+
 					/**
 			         * 当点击“复制”按钮时，触发该方法，回调获取到券码code
 			         * @param webView webview对象。
 			         * @param code 复制的券码
 			         */
-					public void onCopyCode(WebView webView, String code) {
+					@Override
+                    public void onCopyCode(WebView webView, String code) {
 						//当未登录的用户点击去登录时，会调用此处代码。
-						new AlertDialog.Builder(webView.getContext()) 
+						new AlertDialog.Builder(webView.getContext())
 					 	.setTitle("复制券码")
 					 	.setMessage("已复制，券码为："+code)
 					 	.setPositiveButton("是", null)
@@ -83,7 +87,8 @@ public final class MainActivity extends Activity{
 					/**
 					 * 积分商城返回首页刷新积分时，触发该方法。
 					 */
-					public void onLocalRefresh(WebView mWebView, String credits) {
+					@Override
+                    public void onLocalRefresh(WebView mWebView, String credits) {
 						//String credits为积分商城返回的最新积分，不保证准确。
 						//触发更新本地积分，这里建议用ajax向自己服务器请求积分值，比较准确。
 						Toast.makeText(getApplicationContext(), "触发本地刷新积分："+credits,Toast.LENGTH_SHORT).show();
@@ -92,5 +97,5 @@ public final class MainActivity extends Activity{
 			}
 		});
 	}
-	
+
 }
