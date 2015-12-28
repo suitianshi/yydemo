@@ -11,12 +11,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.CookieManager;
-import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
@@ -48,39 +45,9 @@ import java.util.Stack;
  */
 /**
  * Version 1.0.3
- * @author duiba fxt
- * 1、添加分享功能，支持分享的页面的导航栏会显示“分享”，需到兑吧管理后台配置并开启。
- * 2、添加各个功能的注释信息。
- * 3、分享接口和自动登录接口改为AlertDialog的展示形式。
- */
-/**
- * Version 1.0.4
- * @author duiba fxt
- * 删除webview配置： settings.setLoadWithOverviewMode(true);
- * 上面配置可能导致页面无法点击，页面适配等问题。
- */
-/**
- * Version 1.0.5
- * @author duiba fxt
- * 在onConsume方法中加入刷新积分的js请求。如果页面含有onDBNewOpenBack()方法,则调用该js方法(刷新积分)
- * 根据api版本，4.4之后使用evaluateJavascript方法。
- */
-/**
- * Version 1.0.6
- * @author duiba fxt
- * 1.分享功能从js调java代码接口方式改为使用特定uri拦截的方式，消除因页面加载慢导致的分享按钮不出现问题。
- * 2.修复网络慢时，分享按钮可能不出现的bug：改为url拦截方式触发，消除注入js延迟问题。
- * 3.修复分享监听事件空指针的bug：添加creditsListener非空判断。
- * 4.添加处理电话链接，启动本地通话应用。
- */
-/**
+
  * Version 1.0.7
- * @author duiba fxt
- * 提供券码复制功能接口。
- * js触发，券码传值
- * 提供监听返回首页时，积分刷新动作。
- * 删除掉不使用的工具方法
- */
+*/
 
 public class CreditActivity extends Activity {
 	private static String ua;
@@ -177,73 +144,6 @@ public class CreditActivity extends Activity {
 			}
 		}
 
-		mTitle.setTextColor(titlel.intValue());
-		mNavigationBar.setBackgroundColor(navl.intValue());
-		mBackView.setPadding(50, 50, 50, 50);
-		mBackView.setClickable(true);
-
-		// 添加后退按钮监听事件
-		mBackView.setOnClickListener(new OnClickListener() {
-			@Override
-            public void onClick(View view) {
-				onBackClick();
-			}
-		});
-		// 添加分享按钮的监听事件
-		if (mShare != null) {
-			mShare.setOnClickListener(new OnClickListener() {
-				@Override
-                public void onClick(View view) {
-					if (creditsListener != null) {
-						creditsListener.onShareClick(mWebView, shareUrl, shareThumbnail, shareTitle, shareSubtitle);
-					}
-				}
-			});
-		}
-
-        //js调java代码接口。
-        mWebView.addJavascriptInterface(new Object(){
-
-            //用于跳转用户登录页面事件。
-            @JavascriptInterface
-            public void login(){
-            	if(creditsListener!=null){
-            		mWebView.post(new Runnable() {
-						@Override
-						public void run() {
-							creditsListener.onLoginClick(mWebView, mWebView.getUrl());
-						}
-					});
-            	}
-            }
-
-            //复制券码
-            @JavascriptInterface
-            public void copyCode(final String code){
-            	if(creditsListener!=null){
-            		mWebView.post(new Runnable() {
-						@Override
-						public void run() {
-							creditsListener.onCopyCode(mWebView, code);
-						}
-					});
-            	}
-            }
-
-            //客户端本地触发刷新积分。
-            @JavascriptInterface
-            public void localRefresh(final String credits){
-            	if(creditsListener!=null){
-            		mWebView.post(new Runnable() {
-						@Override
-						public void run() {
-							creditsListener.onLocalRefresh(mWebView, credits);
-						}
-					});
-            	}
-            }
-
-        },"duiba_app");
 
 		if (ua == null) {
 			ua = mWebView.getSettings().getUserAgentString() + " Duiba/" + VERSION;
@@ -335,6 +235,13 @@ public class CreditActivity extends Activity {
         mShare.setVisibility(View.INVISIBLE);
         mShare.setClickable(false);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mWebView.onPause();
+    }
+
 
     //初始化WebView配置
     @SuppressWarnings("deprecation")
@@ -486,24 +393,8 @@ public class CreditActivity extends Activity {
     @Override
 	protected void onResume() {
 		super.onResume();
-		if (ifRefresh) {
-			this.url = getIntent().getStringExtra("url");
-			mWebView.loadUrl(this.url);
-			ifRefresh = false;
-		} else if (delayRefresh) {
-			mWebView.reload();
-			delayRefresh = false;
-		} else {
-	    	// 返回页面时，如果页面含有onDBNewOpenBack()方法,则调用该js方法。
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-				mWebView.evaluateJavascript("if(window.onDBNewOpenBack){onDBNewOpenBack()}", new ValueCallback<String>() {
-					@Override
-					public void onReceiveValue(String value) { }
-				});
-			} else {
-				mWebView.loadUrl("javascript:if(window.onDBNewOpenBack){onDBNewOpenBack()}");
-			}
-		}
+
+		mWebView.onResume();
 	}
 
     @Override
