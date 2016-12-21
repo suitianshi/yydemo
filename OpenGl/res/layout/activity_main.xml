@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ac.blitz.demo.MainActivity">
+
+    <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true">
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:weightSum="2">
+            <!-- <Switch
+                    android:text="后置摄像头"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content" android:id="@+id/switch_cam" android:singleLine="false"
+                    android:layout_weight="0.20"
+                    android:visibility="invisible"
+                    android:onClick="onSwitchCam"
+            />
+
+            <Switch
+                    android:layout_width="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_height="wrap_content" android:id="@+id/switch_mute" android:layout_weight="0.30"
+                    android:text="设置静音"/>
+            <Switch
+                    android:text="外放模式"
+                    android:layout_width="wrap_content"
+                    android:onClick="onSpeakerChanged"
+                    android:visibility="invisible"
+                    android:layout_height="wrap_content" android:id="@+id/switch_speaker" android:layout_weight="0.30"/>
+ -->
+        </LinearLayout>
+        <LinearLayout
+                android:id="@+id/big_video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:weightSum="2" android:layout_weight="1">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/render_local"
+                        android:layout_width="match_parent">
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/render_remote1">
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="1" android:weightSum="2">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/render_remote2">
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/render_remote3">
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
