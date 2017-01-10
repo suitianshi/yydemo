@@ -58,7 +58,7 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
                 int v=0;
                 while(day != 9) {
                     cal.add(Calendar.DAY_OF_YEAR, 1);
-                    day = cal.get(Calendar.DAY_OF_YEAR);
+                    day = cal.get(Calendar.DAY_OF_MONTH);
                     v++;
                 }
                 text += ""+v+"天";
